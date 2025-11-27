@@ -16,6 +16,8 @@ module.exports = {
     'react-refresh'
   ],
   rules: {
+
+    'no-undef': 'error',
     //react
     'react-refresh/only-export-components': 'warn',
     'react-hooks/rules-of-hooks': 'error',
