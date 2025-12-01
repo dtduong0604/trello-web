@@ -1,15 +1,127 @@
 import Box from '@mui/material/Box'
+import Chip from '@mui/material/Chip'
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import AddToDriveIcon from '@mui/icons-material/AddToDrive'
+import VpnLockIcon from '@mui/icons-material/VpnLock'
+import BoltIcon from '@mui/icons-material/Bolt'
+import FilterListIcon from '@mui/icons-material/FilterList'
+import Avatar from '@mui/material/Avatar'
+import AvatarGroup from '@mui/material/AvatarGroup'
+import Tooltip from '@mui/material/Tooltip'
+import PersonAddIcon from '@mui/icons-material/PersonAdd'
+import Button from '@mui/material/Button'
 
+const MENU_STYLES = {
+  color: 'white',
+  border: 'none',
+  backgroundColor: 'transparent',
+  borderRadius: '4px',
+  '& .MuiSvgIcon-root': {
+    color: 'white'
+  },
+
+  '&:hover': {
+    backgroundColor: 'primary.50'
+  }
+}
 function BoardBar() {
   return (
     <Box sx={{
-      backgroundColor: 'primary.light',
       width: '100%',
       height: (theme) => theme.trelloCustom.boardBarHeight,
       display: 'flex',
-      alignItems: 'center'
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: 2,
+      paddingX: 2,
+      overflowX: 'auto',
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#34495e' : '#1976d2'),
+      borderBottom: '1px solid white'
     }}>
-        BoardBar
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }} >
+          <Chip 
+            sx={MENU_STYLES}
+            icon={<DashboardIcon />} 
+            label="Do Tung Duong" 
+            clickable
+          />
+          <Chip 
+            sx={MENU_STYLES}
+            icon={<VpnLockIcon />} 
+            label="Public/Private Workspace" 
+            clickable
+          />
+          <Chip 
+            sx={MENU_STYLES}
+            icon={<AddToDriveIcon />} 
+            label="Add To Google Drive" 
+            clickable
+          />
+          <Chip 
+            sx={MENU_STYLES}
+            icon={<BoltIcon />} 
+            label="Automation" 
+            clickable
+          />
+          <Chip 
+            sx={MENU_STYLES}
+            icon={<FilterListIcon />} 
+            label="Filter" 
+            clickable
+          />
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }} >
+          <Button 
+            variant="outlined" 
+            startIcon={<PersonAddIcon />} 
+            sx={{
+              color: 'white',
+              borderColor: 'white',
+              '&:hover': {borderColor: 'white'}
+            }}
+          >
+            INVITE
+          </Button>
+          <AvatarGroup 
+            max={4}
+            sx={{
+              gap: '10px',
+              '& .MuiAvatar-root':{
+                height: '30px',
+                width: '30px',
+                fontSize: 16,
+                border: 'none'
+              }
+            }}
+          >
+            <Tooltip title="Duong">
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </Tooltip>
+            <Tooltip title="Duong">
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </Tooltip>
+            <Tooltip title="Duong">
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </Tooltip>
+            <Tooltip title="Duong">
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </Tooltip>
+            <Tooltip title="Duong">
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </Tooltip>
+            <Tooltip title="Duong">
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </Tooltip>
+            <Tooltip title="Duong">
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </Tooltip>
+            <Tooltip title="Duong">
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            </Tooltip>
+            
+          </AvatarGroup>
+
+        </Box>
     </Box>
   )
 }

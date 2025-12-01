@@ -9,20 +9,20 @@ const theme = extendTheme({
     boardBarHeight: '60px'
   },
   colorSchemes: {
-    light: {
-      palette: {
-        primary: teal,
-        secondary: deepOrange
+    // light: {
+    //   palette: {
+    //     primary: teal,
+    //     secondary: deepOrange
         
-      }
-    },
-    dark: {
-      palette: {
-        primary: cyan,
-        secondary: orange
+    //   }
+    // },
+    // dark: {
+    //   palette: {
+    //     primary: cyan,
+    //     secondary: orange
         
-      }
-    },
+    //   }
+    // },
   },
   // ...other properties
   components: {
@@ -38,7 +38,7 @@ const theme = extendTheme({
             borderRadius: '8px'
           },
           '*::-webkit-scrollbar-thumb:hover': {
-            background: '#16a085'
+            background: 'white'
           }
         }
       }
@@ -57,7 +57,7 @@ const theme = extendTheme({
       styleOverrides: {
         // Name of the slot
         root: ({theme}) => ({
-          color: theme.palette.primary.main,
+          // color: theme.palette.primary.main,
           fontSize: '0.875rem'
         })
       },
@@ -67,19 +67,19 @@ const theme = extendTheme({
         // Name of the slot
         root: ({theme}) => {
           return {
-            color: theme.palette.primary.main,
-            fontSize: '0.875rem',
-            '.MuiOutlinedInput-notchedOutline' : {
-              borderColor: theme.palette.primary.light
-            },
-            '&:hover': {
-              '.MuiOutlinedInput-notchedOutline' : {
-                borderColor: theme.palette.primary.light
-              }
-            },
-            '& fieldset': {
-              borderWidth: '1px !important'
-            }
+            // color: theme.palette.primary.main,
+            // fontSize: '0.875rem',
+            // '.MuiOutlinedInput-notchedOutline' : {
+            //   borderColor: theme.palette.primary.light
+            // },
+            // '&:hover': {
+            //   '.MuiOutlinedInput-notchedOutline' : {
+            //     borderColor: theme.palette.primary.light
+            //   }
+            // },
+            // '& fieldset': {
+            //   borderWidth: '1px !important'
+            // }
           }
         }
       },
