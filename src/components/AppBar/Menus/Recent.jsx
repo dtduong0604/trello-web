@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, colors } from '@mui/material'
 import React from 'react'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
@@ -27,6 +27,7 @@ function Recent() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ExpandMoreIcon />}
+        sx={{color: 'white'}}
       >
         Recent
       </Button>
