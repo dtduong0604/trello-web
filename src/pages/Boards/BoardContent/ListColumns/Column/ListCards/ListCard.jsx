@@ -5,7 +5,7 @@ import Card from './Card/Card'
 
 const COLLUM_HEADER_HEIGHT = theme.trelloCustom.columnHeaderHeight
 const COLLUM_FOOTER_HEIGHT = theme.trelloCustom.columnFooterHeight
-function ListCard() {
+function ListCard({cards}) {
   return (
           <Box sx={{
             p: '0 5px',
@@ -28,16 +28,11 @@ function ListCard() {
               background: '#bfc2cf'
             }
           }}>
-            <Card />
-            <Card temporaryHideMedia/>
-            <Card temporaryHideMedia/>
-            <Card temporaryHideMedia/>
-            <Card temporaryHideMedia/>
-            <Card temporaryHideMedia/>
-            <Card temporaryHideMedia/>
-            <Card temporaryHideMedia/>
-            <Card temporaryHideMedia/>
-            <Card temporaryHideMedia/>
+            {
+              cards?.map((card) =>{
+                return <Card card={card} key={card._id}/>
+              })
+            }
           </Box>
   )
 }

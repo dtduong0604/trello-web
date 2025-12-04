@@ -5,7 +5,7 @@ import { Button, colors } from '@mui/material'
 import NoteAddIcon from '@mui/icons-material/NoteAdd'
 
 
-function ListColumns() {
+function ListColumns({columns}) {
   return (
     <div>
       <Box sx={{
@@ -18,8 +18,16 @@ function ListColumns() {
         '&::-webkit-scrollbar-track': { m: 2 }
       }}>
         {/* column */}
-        <Column />
-        <Column />
+
+        {
+          columns?.map((column) =>{
+            return <Column key={column._id} column={column}/>
+          }
+
+          )
+        }
+
+
 
         <Box sx={{
           minWidth: '200px',

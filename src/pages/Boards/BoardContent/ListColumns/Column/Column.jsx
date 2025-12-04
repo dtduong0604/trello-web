@@ -17,10 +17,12 @@ import AddCardIcon from '@mui/icons-material/AddCard'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 import ListCard from './ListCards/ListCard'
-import theme from '~/theme'
+import { mapOrder } from '~/utils/sorts'
 
+function Column({column}) {
 
-function Column() {
+  const orderedCard = mapOrder(column?.cards,column?.cardOrderIds,'_id')
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -53,7 +55,7 @@ function Column() {
               fontWeight: 'bold',
               cursor: 'pointer'
             }}>
-              Column Title
+              {column.title}
             </Typography>
             <Box>
               <Tooltip title="More Option">
@@ -107,7 +109,7 @@ function Column() {
           </Box>
           
           {/* List Card */}
-          <ListCard />
+          <ListCard cards={orderedCard} />
 
           {/* Box footer */}
           <Box sx={{
