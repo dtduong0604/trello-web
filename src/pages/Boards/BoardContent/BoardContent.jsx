@@ -2,10 +2,11 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import React from 'react'
 import ListColumns from './ListColumns/ListColumns'
+import { mapOrder } from '~/utils/sorts'
 
 
-
-function BoardContent() {
+function BoardContent({board}) {
+  const orderedColumns = mapOrder(board?.columns,board?.columnOrderIds,'_id')
   return (
     <Box sx={{
       bgcolor: (theme) => (theme.palette.mode == 'dark' ? '#34495e' : '#1976d2'),
@@ -13,7 +14,7 @@ function BoardContent() {
       height: (theme) => (theme.trelloCustom.boardContentHeight),
       p: '10px 0'
     }}>
-      <ListColumns />
+      <ListColumns columns={orderedColumns}/>
     </Box>
   )
 }
