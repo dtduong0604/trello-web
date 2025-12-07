@@ -68,7 +68,8 @@ function AppBar() {
             id="outlined-search" label="Search ..." 
             type="text" 
             size='small' 
-            sx={{ 
+            sx={{
+              mt: 0.5,
               minWidth: '120px' ,
               maxWidth: '180px',
               '& label': {color: 'white'},
