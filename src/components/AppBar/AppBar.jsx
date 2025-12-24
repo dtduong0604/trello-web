@@ -18,7 +18,6 @@ import Profiles from './Menus/Profiles'
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos'
 import InputAdornment from '@mui/material/InputAdornment'
 import SearchIcon from '@mui/icons-material/Search'
-import theme from '~/theme'
 import CloseIcon from '@mui/icons-material/Close'
 import { useState } from 'react'
 
