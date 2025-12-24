@@ -182,6 +182,9 @@ function Column({column}) {
                 label="Enter column title ..." 
                 type="text" 
                 size='small'
+                variant='outlined'
+                autoFocus
+                data-no-dnd="true"
                 value={newCardTitle}
                 onChange={event => setNewCardTitle(event.target.value)} 
                 sx={{
