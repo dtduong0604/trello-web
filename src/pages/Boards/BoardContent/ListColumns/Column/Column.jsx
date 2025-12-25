@@ -25,6 +25,7 @@ import { BorderColor } from '@mui/icons-material'
 import theme from '~/theme'
 import TextField from '@mui/material/TextField'
 import CloseIcon from '@mui/icons-material/Close'
+import { toast } from 'react-toastify'
 
 function Column({column}) {
 
@@ -51,6 +52,8 @@ function Column({column}) {
 
   const addNewCard = () => {
     if(!newCardTitle){
+
+      toast.error('Please enter card title')
       return
     }
 
