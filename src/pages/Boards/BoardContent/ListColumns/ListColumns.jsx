@@ -6,6 +6,7 @@ import NoteAddIcon from '@mui/icons-material/NoteAdd'
 import {SortableContext, horizontalListSortingStrategy} from '@dnd-kit/sortable'
 import TextField from '@mui/material/TextField'
 import CloseIcon from '@mui/icons-material/Close'
+import { toast } from 'react-toastify'
 
 
 function ListColumns({columns}) {
@@ -17,6 +18,7 @@ function ListColumns({columns}) {
 
   const addNewColumn = () => {
     if(!newColumnTitle){
+      toast.error('Please enter Column Title',{position: 'top-center'})
       return
     }
 
