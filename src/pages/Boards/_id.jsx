@@ -4,9 +4,10 @@ import BoardBar from './BoardBar/BoardBar'
 import BoardContent from './BoardContent/BoardContent'
 import { mockData } from '~/apis/mock-data'
 import { useEffect, useState } from 'react'
-import { createNewCardAPI, createNewColumnAPI, fetchBoardDetailsAPI, updateBoardDetailsAPI } from '~/apis'
+import { createNewCardAPI, createNewColumnAPI, fetchBoardDetailsAPI, updateBoardDetailsAPI, updateColumnDetailAPI } from '~/apis'
 import { isEmpty } from 'lodash'
 import { generatePlaceholderCard } from '~/utils/formatters'
+import { mapOrder } from '~/utils/sorts'
 
 function Board() {
   const [board, setBoard] = useState(null)
@@ -16,10 +17,16 @@ function Board() {
 
     fetchBoardDetailsAPI(boardId).then(board => {
 
+      board.columns = mapOrder(board.columns, board.columnOrderIds, '_id')
+
       board.columns.forEach(column => {
         if(isEmpty(column.cards)) {
           column.cards = [generatePlaceholderCard(column)]
           column.cardOrderIds = [generatePlaceholderCard(column)._id]
+        }
+
+        else{
+          column.cards = mapOrder(column.cards, column.cardOrderIds, '_id')
         }
       })
 
@@ -74,6 +81,25 @@ function Board() {
     await updateBoardDetailsAPI(newBoard._id, { columnOrderIds: dndOrderedColumnsIds})
   }
 
+  const moveCardInTheSameColumn = (dndOrderedCards, dndOrderedCardIds, columnId) => {
+    const newBoard = { ...board }
+    const columnToUpdate = newBoard.columns.find(column => column._id === columnId)
+    if(columnToUpdate) {
+      columnToUpdate.cards = dndOrderedCards
+      columnToUpdate.cardOrderIds = dndOrderedCardIds
+    }
+
+    updateColumnDetailAPI(columnId, {cardOrderIds : dndOrderedCardIds})
+  }
+
+  if(!board){
+    return (
+      <div>
+        ...loanding
+      </div>
+    )
+  }
+
   return (
       <Container disableGutters maxWidth={false} sx={{height: '100vh'}}>
         <AppBar />
@@ -83,6 +109,7 @@ function Board() {
           createNewColumn={createNewColumn}
           createNewCard={createNewCard}
           moveColumns = {moveColumns}
+          moveCardInTheSameColumn = {moveCardInTheSameColumn}
         />
       </Container>
     )

@@ -32,7 +32,7 @@ const ACTIVE_DRAG_ITEM_TYPE = {
 }
 
 
-function BoardContent({board, createNewColumn, createNewCard, moveColumns}) {
+function BoardContent({board, createNewColumn, createNewCard, moveColumns, moveCardInTheSameColumn}) {
   const pointerSensor = useSensor(PointerSensor, {activationConstraint: {distance: 10}})
   const mouseSensor = useSensor(MouseSensor, {activationConstraint: {distance: 10}})
   const touchSensor = useSensor(TouchSensor, {activationConstraint: {delay: 250, tolerance: 500}})
@@ -49,7 +49,7 @@ function BoardContent({board, createNewColumn, createNewCard, moveColumns}) {
 
 
   useEffect(() =>{
-    setOrderedColumns(mapOrder(board?.columns,board?.columnOrderIds,'_id'))
+    setOrderedColumns(board?.columns)
   },[board])
 
   const dropAnimation =  {
@@ -188,8 +188,8 @@ function BoardContent({board, createNewColumn, createNewCard, moveColumns}) {
     if(!over || !active) return
 
 
-    //keo tha card
-    if(activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.CARD){
+      //keo tha card
+      if(activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.CARD){
 
 
       const {id: activeDraggingCardId, data: {current: activeDraggingCardData} } = active
@@ -206,9 +206,10 @@ function BoardContent({board, createNewColumn, createNewCard, moveColumns}) {
       //cung cot
       else{
         const oldCardIndex = oldColumnWhenDraggingCard?.cards.findIndex(c => c._id === activeDraggingCardId)
-        const newCardIndex = overColumn.card?.cards.findIndex(c => c.id===overCardId)
+        const newCardIndex = overColumn?.cards.findIndex(c => c._id === overCardId)
 
         const dndOrderedCards = arrayMove(oldColumnWhenDraggingCard?.cards, oldCardIndex, newCardIndex)
+        const dndOrderedCardIds = dndOrderedCards.map(card => card._id)
 
         setOrderedColumns(
           prevColumns => {
@@ -222,6 +223,8 @@ function BoardContent({board, createNewColumn, createNewCard, moveColumns}) {
             return nextColumns
           }
         )
+
+        moveCardInTheSameColumn(dndOrderedCards,dndOrderedCardIds, oldColumnWhenDraggingCard._id)
       }
 
 
@@ -239,7 +242,7 @@ function BoardContent({board, createNewColumn, createNewCard, moveColumns}) {
         moveColumns(dndOrderedColumns)
 
         setOrderedColumns(dndOrderedColumns)
-      }
+        }
     }
 
     
